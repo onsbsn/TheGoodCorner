@@ -38,7 +38,7 @@ struct CategoriesItemsView: View {
                             action: {
                                 selectedCategory = item.id
                                 Task {
-                                    await viewModel.loadFilteredListings(categoryId: selectedCategory)
+                                    await viewModel.loadFilteredListings(categoryId: selectedCategory, query: nil)
                                 }
                             }
                         )

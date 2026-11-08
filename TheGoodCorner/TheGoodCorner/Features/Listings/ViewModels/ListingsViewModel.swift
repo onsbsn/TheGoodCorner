@@ -160,8 +160,10 @@ final class ListingsViewModel: ObservableObject {
         await loadListings(reset: false)
     }
     
-    func loadFilteredListings(categoryId: Int?) async {
+    func loadFilteredListings(categoryId: Int?, query: String?) async {
         guard !isLoading else { return }
+        
+        currentQuery = query
         
         guard connectivityManager.isConnected else {
             errorMessage = "No internet connection"

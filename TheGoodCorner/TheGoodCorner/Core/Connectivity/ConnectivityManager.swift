@@ -10,7 +10,7 @@ import Network
 import Combine
 
 @MainActor
-final class ConnectivityManager: ObservableObject {
+class ConnectivityManager: ObservableObject {
     @Published private(set) var isConnected: Bool = true
         
     private let monitor = NWPathMonitor()

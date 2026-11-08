@@ -51,8 +51,15 @@ struct ListingsView: View {
                                     try? await Task.sleep(for: .milliseconds(500))
                                     
                                     guard !Task.isCancelled else { return }
-                                    
-                                    await viewModel.loadListings(query: query, reset: true)                              }
+                                    if selectedCategory != nil {
+                                        await viewModel.loadFilteredListings(
+                                            categoryId: selectedCategory,
+                                            query: query
+                                        )
+                                    } else {
+                                        await viewModel.loadListings(query: query, reset: true)
+                                    }
+                                }
                             }
                         }
                         .padding(.horizontal)
