@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ListingModel: Codable {
+struct ListingModel: Sendable, Identifiable{
     let id: Int?
     let categoryId: Int?
     let title: String?
@@ -16,12 +16,7 @@ struct ListingModel: Codable {
     let isUrgent: Bool?
     let imagesUrl: ImagesUrlModel?
     let creationDate: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case id, title, description, price
-        case categoryId = "category_id"
-        case isUrgent = "is_urgent"
-        case imagesUrl = "images_url"
-        case creationDate = "creation_date"
-    }
+}
+
+extension ListingModel: nonisolated Codable {
 }

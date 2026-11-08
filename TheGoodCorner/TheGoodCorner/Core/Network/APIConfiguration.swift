@@ -13,7 +13,7 @@ struct APIConfiguration: Sendable {
     let defaultHeaders: [String: String]
 
     static let local = APIConfiguration(
-        baseURL: URL(string: "http://localhost:8080")!,
+        baseURL: URL(string: "http://127.0.0.1:8080")!,
         timeoutInterval: 15,
         defaultHeaders: [
             "Content-Type": "application/json",

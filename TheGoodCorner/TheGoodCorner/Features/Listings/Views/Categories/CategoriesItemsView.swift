@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct CategoriesView: View {
+struct CategoriesItemsView: View {
     
     @StateObject var viewModel: ListingsViewModel
     
     @Binding var selectedCategory: Int?
-
+    
     var body: some View {
         switch viewModel.categoriesState {
         case .idle, .loading:
@@ -25,6 +25,9 @@ struct CategoriesView: View {
                         isSelected: selectedCategory == nil,
                         action: {
                             selectedCategory = nil
+                            Task {
+                                await viewModel.loadListings(page: 1, limit: 10, reset: true)
+                            }
                         }
                     )
                     
@@ -34,14 +37,27 @@ struct CategoriesView: View {
                             isSelected: item.id == selectedCategory,
                             action: {
                                 selectedCategory = item.id
+                                Task {
+                                    await viewModel.loadFilteredListings(categoryId: selectedCategory)
+                                }
                             }
                         )
                     }
                 }
                 .padding(.horizontal, 16)
             }.frame(height: 58)
-        case .failed(let message):
-            Text(message)
+        case .failed(_):
+            CategoryItemView(
+                text: "All",
+                isSelected: true,
+                action: {
+                    selectedCategory = nil
+                    Task {
+                        await viewModel.loadListings(page: 1, limit: 10, reset: true)
+                    }
+                }
+            )
+            .padding(.horizontal)
         }
     }
 }

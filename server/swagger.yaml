@@ -5,7 +5,7 @@ info:
   description: Local API server for the iOS technical test
 
 servers:
-  - url: http://localhost:8080
+  - url: https://127.0.0.1:8080
 
 paths:
   /listings:

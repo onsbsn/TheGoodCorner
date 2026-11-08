@@ -6,7 +6,7 @@ struct TheGoodCornerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(container)
+            ListingsView(viewModel: container.makeListingsViewModel()).environmentObject(container)
         }
     }
 }

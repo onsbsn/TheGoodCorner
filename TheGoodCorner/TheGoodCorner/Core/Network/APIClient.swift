@@ -25,6 +25,7 @@ final class APIClient: APIClientProtocol, Sendable {
         self.session = session
 
         let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         self.decoder = decoder
     }
 

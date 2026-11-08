@@ -15,10 +15,26 @@ final class DependencyContainer: ObservableObject {
 
     let apiClient: APIClientProtocol
     let connectivityManager: ConnectivityManager
+    let listingService: ListingServiceProtocol
+    let categoryService: CategoryServiceProtocol
 
     init() {
         let client = APIClient()
         self.apiClient = client
+        self.listingService = ListingService(client: client)
+        self.categoryService = CategoryService(client: client)
         self.connectivityManager = ConnectivityManager()
+    }
+    
+    func makeListingsViewModel() -> ListingsViewModel {
+        ListingsViewModel(
+            listingService: listingService,
+            categoryService: categoryService,
+            connectivityManager: connectivityManager
+        )
+    }
+    
+    func makeListingDetailsViewModel() -> ListingDetailsViewModel {
+        ListingDetailsViewModel(categoryService: categoryService, connectivityManager: connectivityManager)
     }
 }

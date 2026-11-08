@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct CategoryModel: Codable {
+struct CategoryModel: Sendable, Identifiable {
     let id: Int?
     let name: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case id, name
-    }
+}
+
+extension CategoryModel: nonisolated Codable {
+    static let empty = CategoryModel(id: nil, name: nil)
 }

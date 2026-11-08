@@ -1,5 +1,5 @@
 //
-//  ShimmerV.swift
+//  ShimmerCategoriesView.swift
 //  TheGoodCorner
 //
 //  Created by Ons Ben Slimen on 6/11/2026.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ShimmerView: View {
+struct ShimmerCategoriesView: View {
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -19,7 +19,10 @@ struct ShimmerView: View {
                         .modifier(Shimmer())
                 }
             }
-        }.frame(height: 58, alignment: .top)
+        }
+        .frame(height: 58, alignment: .top)
+        .padding(.horizontal)
+        
         
         
     }
